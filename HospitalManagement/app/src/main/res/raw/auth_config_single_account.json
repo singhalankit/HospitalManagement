@@ -1,0 +1,14 @@
+{
+"client_id" : "0bf3f559-c7cc-4e2f-ad0b-6a2333289b04",
+"authorization_user_agent" : "DEFAULT",
+"redirect_uri" : "msauth://com.example.hospitalmanagement/VAjEXw0FmVqdHQnPQfkP%2BZOXOQE%3D",
+"authorities" : [
+{
+"type": "AAD",
+"audience": {
+"type": "AzureADMyOrg",
+"tenant_id": "b2486e95-f82b-4815-be38-8df63f408952"
+}
+}
+]
+}

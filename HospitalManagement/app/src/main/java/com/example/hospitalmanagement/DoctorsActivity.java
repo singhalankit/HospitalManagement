@@ -19,6 +19,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 public class DoctorsActivity extends AppCompatActivity implements Callback<JsonObject> {
 
 
@@ -43,13 +44,13 @@ DocSignIn.setOnClickListener(new View.OnClickListener() {
         }
 
     private void CallDocRegister() {
-        EditText DocFirstName = findViewById(R.id.DocFirstName);
-        EditText DocLastName = findViewById(R.id.DocLastName);
-        EditText DocEmployeeId = findViewById(R.id.DocEmployeeId);
-        EditText DocEmail = findViewById(R.id.DocEmailAddress);
-        EditText DocPhone = findViewById(R.id.DocPhone);
-        EditText DocAge = findViewById(R.id.DocAge);
-        EditText DocGender = findViewById(R.id.DocGender);
+        //EditText DocFirstName = findViewById(R.id.DocFirstName);
+        //EditText DocLastName = findViewById(R.id.DocLastName);
+        //EditText DocEmployeeId = findViewById(R.id.DocEmployeeId);
+        //EditText DocEmail = findViewById(R.id.DocEmailAddress);
+        //EditText DocPhone = findViewById(R.id.DocPhone);
+        //EditText DocAge = findViewById(R.id.DocAge);
+        //EditText DocGender = findViewById(R.id.DocGender);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(DoctorsLogin.URL_BASE)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -58,17 +59,28 @@ DocSignIn.setOnClickListener(new View.OnClickListener() {
         DoctorsLogin apiInterface = retrofit.create(DoctorsLogin.class);
         try {
             JSONObject paramObject = new JSONObject();
-            paramObject.put("firstName", DocFirstName.getText());
-            paramObject.put("staffId", DocEmployeeId.getText());
-            paramObject.put("lastName", DocLastName.getText());
-            paramObject.put("age", DocAge.getText());
-            paramObject.put("gender", DocGender.getText());
-            paramObject.put("email", DocEmail.getText());
-            paramObject.put("phone", DocPhone.getText());
+            paramObject.put("firstName", "Test");
+            paramObject.put("staffId", "LAST123");
+            paramObject.put("lastName", "Last");
+            paramObject.put("age", "25");
+            paramObject.put("gender", "Male");
+            paramObject.put("email", "test@test.com");
+            paramObject.put("phone", "9876543215");
 
 
             Call<JsonObject> userCall = apiInterface.getUser(paramObject.toString());
-            userCall.enqueue(this);
+            //userCall.enqueue(this);
+            userCall.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    response.body();
+                }
+
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+
+                }
+            });
         } catch (JSONException e) {
             e.printStackTrace();
         }

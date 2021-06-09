@@ -9,10 +9,10 @@ import retrofit2.http.POST;
 
 public interface DoctorsLogin {
 
-    String URL_BASE = "https://hospital-manage.azurewebsites.net";
+    String URL_BASE = "https://manage-hospital.azurewebsites.net";
 
     @Headers("Content-Type: application/json")
-    @POST("registerStaff")
+    @POST("/registerStaff")
 
     Call<JsonObject> getUser(@Body String body);
 }
