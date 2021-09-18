@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+    <TextView
+        android:id="@+id/errorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:text="TextView" />
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:layout_below="@+id/errorMessage"
+        android:inputType="textPersonName"
+        android:labelFor="@id/userName"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@+id/userName"
+        android:layout_marginVertical="25dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:labelFor="@id/password"/>
+
+    <Button
+        android:id="@+id/signIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:layout_centerInParent="true"
+        android:text="SignIn" />
+
+    <Button
+        android:id="@+id/signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signIn"
+        android:layout_centerInParent="true"
+        android:text="SignUp" />
+
+
+</RelativeLayout>

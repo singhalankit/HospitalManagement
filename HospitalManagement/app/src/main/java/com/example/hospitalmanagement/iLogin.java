@@ -7,11 +7,11 @@ import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
-public interface DoctorsLogin {
+public interface iLogin {
 
     String URL_BASE = "https://manage-hospital.azurewebsites.net";
 
     @Headers("Content-Type: application/json")
-    @POST("/registerStaff")
-    Call<JsonObject> getUser(@Body StaffLoginRequest body);
+    @POST("/login")
+    Call<JsonObject> getUser(@Body LoginRequest body);
 }

@@ -9,4 +9,35 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string-array name="hospital_list">
+        <item>Cappuccino</item>
+        <item>Espresso</item>
+        <item>Mocha</item>
+        <item>Caffè Americano</item>
+        <item>Cafe Zorro</item>
+    </string-array>
+
+    <string-array name="speciality">
+        <item>SPECIALITY1</item>
+        <item>SPECIALITY2</item>
+        <item>SPECIALITY3</item>
+        <item>SPECIALITY4</item>
+        <item>SPECIALITY5</item>
+    </string-array>
+
+    <string-array name="docList">
+        <item>DOC1</item>
+        <item>DOC2</item>
+        <item>DOC3</item>
+        <item>DOC4</item>
+        <item>DOC4</item>
+    </string-array>
+
+    <string-array name="docAvailableTimeSlots">
+        <item>9:00 AM</item>
+        <item>9:15 AM</item>
+        <item>9:30 AM</item>
+        <item>10:00 AM</item>
+        <item>10:30 AM</item>
+    </string-array>
 </resources>

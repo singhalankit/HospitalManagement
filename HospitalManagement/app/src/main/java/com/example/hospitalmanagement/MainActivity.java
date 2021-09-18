@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.microsoft.identity.common.internal.util.StringUtil;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,7 +20,9 @@ import android.view.textclassifier.TextLanguage;
 import android.view.textclassifier.TextSelection;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 
 import java.io.DataOutputStream;
@@ -31,70 +34,54 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
 
         //Toolbar toolbar = findViewById(R.id.toolbar);
-        EditText userName = findViewById(R.id.editTextTextPersonName);
-        EditText password = findViewById(R.id.editTextTextPassword);
-        Button signIn = findViewById(R.id.buttonSignIn);
-        Button DocSignIn = findViewById(R.id.DocSignIn);
-        DocSignIn.setOnClickListener(new View.OnClickListener() {
+        EditText userName = findViewById(R.id.userName);
+        EditText password = findViewById(R.id.password);
+        Button signIn = findViewById(R.id.signIn);
+        Button signUp = findViewById(R.id.signUp);
+        signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               DoctorsActivity DC = new DoctorsActivity();
-               DC.onCreate(savedInstanceState);
+               openNewActivity();
             }
         });
-        //setSupportActionBar(toolbar);
+        signIn.setOnClickListener(new View.OnClickListener(){
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-
-        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                callAPIAndValidate(userName,password);
             }
         });
-    }
-
-    private void signInPost() {
-
-
-
-                    try {
-                        URL url = new URL("https://hospitalmanagement.azurewebsites.net/registerStaff");
-                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                        conn.setRequestMethod("POST");
-                        conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                        conn.setRequestProperty("Accept","application/json");
-                        conn.setDoOutput(true);
-                        conn.setDoInput(true);
-
-                        JSONObject jsonParam = new JSONObject();
-                        jsonParam.put("userName", "sample@gmail.com");
-                        jsonParam.put("pazzwrd", "4384984938943");
-
-                        Log.i("JSON", jsonParam.toString());
-                        DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-                        //os.writeBytes(URLEncoder.encode(jsonParam.toString(), "UTF-8"));
-                        os.writeBytes(jsonParam.toString());
-
-                        os.flush();
-                        os.close();
-
-                        Log.i("STATUS", String.valueOf(conn.getResponseCode()));
-                        Log.i("MSG" , conn.getResponseMessage());
-
-                        conn.disconnect();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-
-
 
     }
+
+    private void callAPIAndValidate(EditText userName, EditText password) {
+
+        if(StringUtils.isBlank(String.valueOf(userName.getText())) || StringUtils.isBlank(String.valueOf(password.getText()))) {
+            Log.i("Data------- Error",String.valueOf(userName.getText()));
+            TextView t = findViewById(R.id.errorMessage);
+            t.setVisibility(1);
+            t.setText("UserName/Password can't be empty");
+            
+//            returnLoginActivity();
+        } else{
+            Log.i("no--- Data------- Error","no error");
+        }
+    }
+
+    private void returnLoginActivity(){
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void openNewActivity() {
+
+        Intent intent = new Intent(this,DoctorsActivity.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
